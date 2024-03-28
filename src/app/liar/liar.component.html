@@ -1,0 +1,29 @@
+<h2>{{ this.taskName | uppercase }}</h2>
+<button (click)="getTask()">{{ getTaskTxt }}</button>
+<ng-container *ngIf="(task$ | async) as task" class="wrapper">
+  <div> {{ task.hint1 }}</div>
+  <div> {{ task.hint2 }}</div>
+  <div> {{ task.hint3 }}</div>
+  <h3> {{ "Polecenia: " + task.msg }}</h3>
+  <div>{{ 'PYTANIE: ' + questionText }}</div>
+  <div>
+    <button (click)="getCorrectAnswer()">Jaka jest prawdziwa odpowiedz</button>
+  </div>
+  <div *ngIf="showCorrectAnswer$ | async as correctAnswer">
+    {{ correctAnswer }}
+  </div>
+  <div>
+    <button (click)="getSystemAnswer()">Jaka jest odpowiedz systemu</button>
+  </div>
+  <div *ngIf="showSystemAnswer$ | async as systemAnswer">
+    {{ systemAnswer.answer }}
+  </div>
+</ng-container>
+<ng-container *ngIf="isCheckAnswerVisible$ | async as answer">
+  {{ "Czy odpowiedz systemu jest prawdziwa?: " + answer }}
+  <div>
+    <button (click)="getAnswer(answer)">wyslij odpowiedz</button>
+  </div>
+  {{ (showAnswer$ | async)?.note }}
+</ng-container>
+

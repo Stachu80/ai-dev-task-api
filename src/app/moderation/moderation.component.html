@@ -1,0 +1,21 @@
+<h2>{{ taskName  | uppercase }}</h2>
+<button (click)="getTask()">{{ getTaskTxt }}</button>
+
+<ng-container *ngIf="(task$ | async) as task" class="wrapper">
+  <h3>{{ task.msg }}</h3>
+  <ng-container *ngFor="let item of task.input, let i=index">
+    <div>{{ i + ".  " + item }}</div>
+  </ng-container>
+  <br>
+  <button *ngIf="task?.msg" (click)="sendAnswer()">{{ showAnswerTxt }}</button>
+  <br>
+  <div>{{ answer$ | async }}</div>
+  <br>
+  <div>{{ (showAnswer$ | async)?.note }}</div>
+</ng-container>
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<h2>{{ this.taskName | uppercase }}</h2>
+<div *ngIf=" (task$ | async) as task">{{ task?.msg }}</div>
+<button *ngIf="isButtonGetTaskVisible" (click)="getTask()">Pobierz zadanie</button>
+<ng-container *ngIf=" (task$ |async) as task ">
+  <ng-container *ngFor="let item of task.blog, let i = index">
+    <div>{{ i + ".  " + item }}</div>
+  </ng-container>
+  <button (click)="writeBlog(task)">Napisz blog</button>
+</ng-container>
+<ng-container *ngIf=" (blog$ |async) as blogger ">
+  <ng-container *ngFor="let item of blogger, let i = index">
+    <div>{{ i + ".  " + item }}</div>
+  </ng-container>
+  <button (click)="sendAnswer(blogger)">wyslij odpowiedz</button>
+</ng-container>
+<div>{{ isCorrectInfo.note }}</div>

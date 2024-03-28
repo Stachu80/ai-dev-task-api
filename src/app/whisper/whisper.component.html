@@ -1,0 +1,11 @@
+<h2>{{ this.taskName | uppercase }}</h2>
+<button (click)="getTask()">{{ "pobierz zadanie" }}</button>
+<ng-container *ngIf="(task$ | async) as task" class="wrapper">
+  <div> {{ task.msg }}</div>
+  <div> {{ task.hint }}</div>
+  <br>
+  <button *ngIf="(task)?.msg" (click)="getSpeechToText()">{{ "pobierz transkrypcje" }}</button>
+  <br>
+</ng-container>
+
+<div>{{ (showAnswer$ | async)?.note }}</div>
